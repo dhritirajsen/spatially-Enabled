@@ -99,14 +99,6 @@ const EventDetails = [
         "event_description": ""
     },
 
-    {
-        "event_name": "Tracking 21st century climate dynamics of the Third Pole: An analysis of topo-climate impacts on snow cover in the central Himalaya using Google Earth Engine",
-        "year_Publish" : "",        
-        "link": "https://www.sciencedirect.com/science/article/pii/S0303243421001975",
-    
-        "event_description": ""
-    },
-
 	{
         "event_name": "Using Time-Series Remote Sensing Images in Monitoring the Spatial–Temporal Dynamics of LULC in the Msimbazi Basin, Tanzania",
         "year_Publish" : "2021",        
@@ -135,28 +127,44 @@ const EventDetails = [
         "link": "https://www.sciencedirect.com/science/article/pii/S2352484722005935",
     
         "event_description": ""
-    }
+    },
+    {
+        "event_name": "Mapping 21st century global coastal land reclamation",
+        "year_Publish" : "2023",
+        "link": "https://doi.org/10.1029/2022EF002927",
 
+        "event_description": "Earth's Future"
+    },
 
-]   
+]
+
+function escapeHtml(text) {
+    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Fills the year dropdown from the data above, newest year first.
+function initEvents() {
+    const years = [...new Set(EventDetails.map((e) => e.year_Publish).filter(Boolean))].sort().reverse();
+    document.getElementById("eventSelect").innerHTML =
+        `<option value="all" selected>All years</option>` +
+        years.map((y) => `<option value="${y}">${y}</option>`).join("");
+    viewEvent();
+}
 
 function viewEvent() {
     const eventSelect = document.getElementById("eventSelect").value;
-    let count = 0;
-    document.getElementById("eventContent").innerHTML =
-        EventDetails.map((val) => {
-            if (eventSelect == val.year_Publish) {
-                count++;
-                return (`<div class="col-sm-4 eachEvent">
-            <h1 class="event_month">${val.year_Publish}</h1>
-            <a href=${val.link}><h1  class="event_name">${val.event_name}</h1></a>         
-            <p class="event_description">${val.event_description}</p>
-        </div>`);
-            }
+    const matches = EventDetails
+        .filter((val) => eventSelect === "all" || eventSelect === val.year_Publish)
+        .sort((a, b) => b.year_Publish.localeCompare(a.year_Publish));
 
-        }).join("");
-    if (count === 0) {
-        document.getElementById("eventContent").innerHTML = `<p>No Publication Found For<u> ${eventSelect} </u></p>`
+    if (matches.length === 0) {
+        document.getElementById("eventContent").innerHTML = `<p>No publications found for <u>${escapeHtml(eventSelect)}</u></p>`;
+        return;
     }
-
+    document.getElementById("eventContent").innerHTML = matches.map((val) => `
+        <div class="col-sm-4 eachEvent">
+            <h1 class="event_month">${escapeHtml(val.year_Publish)}</h1>
+            <a href="${escapeHtml(val.link)}"><h1 class="event_name">${escapeHtml(val.event_name)}</h1></a>
+            <p class="event_description">${escapeHtml(val.event_description)}</p>
+        </div>`).join("");
 }

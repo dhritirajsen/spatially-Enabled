@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Dhritiraj Sengupta</title>
+    <title>Publications | Dhritiraj Sengupta</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Peer-reviewed publications by Dhritiraj Sengupta on coastal land reclamation, urban change and remote sensing.">
     <link rel="stylesheet" href="./css/min.css/bootstrap.min.css">
     <script src="./min.js files/jquery_3.5.1_.min.js"></script>
     <script src="./min.js files/popper.min.js"></script>
@@ -26,12 +27,12 @@
 
 </head>
 
-<body>
+<body onload="initEvents()">
 
     <div class="banner">
 
         <p class="eng-title hline-bottom"><img src="./image/resource/earth.gif" width="350px" height="220px"
-                alt="DhritiRaj"> Dhritiraj Sengupta,P.hD</p> <p>Spatially Enabled</p>
+                alt="Earth from space"> Dhritiraj Sengupta, PhD</p> <p>Spatially Enabled</p>
     </div>
     <div class="container">
         <div class="row">
@@ -44,13 +45,10 @@
                             <a class="nav-link " href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Outreach.html">Twitter</a>
+                            <a class="nav-link" href="Outreach.html">Social</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="Events.html">My Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="Resources.html">Community Engagement</a>
@@ -66,15 +64,8 @@
     
 
     <div class="eventSelect">
-        <select class="browser-default custom-select" id="eventSelect">
-            <option selected>Select Year</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>            
-        </select>
-        <button class="btn btn-danger" onclick="viewEvent()">View</button>
+        <select class="browser-default custom-select" id="eventSelect" aria-label="Select year" onchange="viewEvent()"></select>
+        <button class="btn btn-dark" onclick="viewEvent()">View</button>
     </div>
 
 
@@ -89,9 +80,10 @@
             <div class="row">
                 <div class="col-sm-4">
                     <p class="footer-content">
-                        <a href="https://www.youtube.com/watch?v=xqyUrPyT0QQ"><i class="fa fa-youtube"></i></a>
-                        <a href="#"><i class=" fa fa-github"></i></a>
-
+                        <a href="https://www.linkedin.com/in/dse118/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                        <a href="https://scholar.google.com/citations?user=3ry0vYsAAAAJ&hl=en" aria-label="Google Scholar"><i class="fa fa-graduation-cap"></i></a>
+                        <a href="https://github.com/dhritirajsen" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                        <a href="https://www.youtube.com/watch?v=xqyUrPyT0QQ" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
                     </p>
                 </div>
                 <div class="col-sm-4">
